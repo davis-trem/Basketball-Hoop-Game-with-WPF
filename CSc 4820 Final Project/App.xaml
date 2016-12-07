@@ -1,0 +1,9 @@
+﻿<Application x:Class="CSc_4820_Final_Project.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:CSc_4820_Final_Project"
+             StartupUri="View/MainWindow.xaml">
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>

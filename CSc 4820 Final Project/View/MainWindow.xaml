@@ -1,0 +1,77 @@
+﻿<Window x:Class="CSc_4820_Final_Project.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CSc_4820_Final_Project"
+        mc:Ignorable="d"
+        xmlns:mvvm="clr-namespace:CSc_4820_Final_Project.ViewModel"
+        Title="Final Project" Height="540" Width="720" ResizeMode="NoResize">
+    <Window.DataContext>
+        <mvvm:BallViewModel x:Name="BallViewModel"/>
+    </Window.DataContext>
+    <Canvas>
+        <Image x:Name="imageBG" Height="510" Width="714" Source="/CSc 4820 Final Project;component/Images/bgBeach.jpg"/>
+
+        <Menu x:Name="menu" Height="22" VerticalAlignment="Top" Width="714">
+            <MenuItem Header="Game">
+                <MenuItem Header="Mode">
+                    <MenuItem x:Name="menuFree" Header="Free Play" Click="menuFree_Click"/>
+                    <MenuItem x:Name="menuLives" Header="Life Limit" Click="menuLives_Click"/>
+                    <MenuItem x:Name="menuTime" Header="Time Trail" Click="menuTime_Click"/>
+                </MenuItem>
+                <MenuItem x:Name="menuRestart" Header="Restart" Click="menuRestart_Click"/>
+                <MenuItem x:Name="menuExit" Header="Exit" Click="menuExit_Click"/>
+            </MenuItem>
+            <MenuItem Header="Customize">
+                <MenuItem Header="Ball">
+                    <MenuItem x:Name="menuBomb" Header="Bomb" Click="menuBomb_Click"/>
+                    <MenuItem x:Name="menuBball" Header="Basketball" Click="menuBball_Click"/>
+                    <MenuItem x:Name="menuKermit" Header="Kermit" Click="menuKermit_Click"/>
+                </MenuItem>
+                <MenuItem Header="Background">
+                    <MenuItem x:Name="menuBeach" Header="Beach" Click="menuBeach_Click"/>
+                    <MenuItem x:Name="menuCourt" Header="Court" Click="menuCourt_Click"/>
+                    <MenuItem x:Name="menuHell" Header="CSc 4820" Click="menuHell_Click"/>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+
+        <Ellipse x:Name="hoopInner" HorizontalAlignment="Left" Height="105" Stroke="#00901414" StrokeThickness="10" VerticalAlignment="Top" Width="80" Canvas.Left="553" Canvas.Top="27">
+            <Ellipse.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF30BADC" Offset="0"/>
+                    <GradientStop Color="#FFFF9E1B" Offset="1"/>
+                </LinearGradientBrush>
+            </Ellipse.Fill>
+        </Ellipse>
+        <Ellipse x:Name="hoopBack" Fill="#00F4F4F5" HorizontalAlignment="Left" Height="105" Stroke="#FF901414" StrokeThickness="10" VerticalAlignment="Top" Width="80" Canvas.Left="553" Canvas.Top="27">
+            <Ellipse.Clip>
+                <RectangleGeometry Rect="0,0,30,105"/>
+            </Ellipse.Clip>
+        </Ellipse>
+        <Image x:Name="exploImg" Height="50" Canvas.Left="454" Canvas.Top="341" Width="50" Opacity="0" Source="/CSc 4820 Final Project;component/Images/explosion.png"/>
+        <Image x:Name="imageBomb" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="50" Source="/CSc 4820 Final Project;component/Images/bomb.png" Canvas.Left="36" Canvas.Top="418"/>
+        <Ellipse x:Name="hoopFront" Fill="#00F4F4F5" HorizontalAlignment="Left" Height="105" Stroke="#FF901414" StrokeThickness="10" VerticalAlignment="Top" Width="80" Canvas.Left="553" Canvas.Top="27">
+            <Ellipse.Clip>
+                <RectangleGeometry Rect="30,0,80,105"/>
+            </Ellipse.Clip>
+        </Ellipse>
+        <Canvas x:Name="drawCanvas" MouseDown="OnMouseDown" MouseUp="OnMouseUp" MouseMove="OnMouseMove" HorizontalAlignment="Left" Height="92" VerticalAlignment="Top" Width="86" Canvas.Top="418">
+            <Canvas.Background>
+                <SolidColorBrush Color="White" Opacity="0" />
+            </Canvas.Background>
+        </Canvas>
+        <Label x:Name="xData" TargetUpdated="xDataChanged" Content="{Binding Path=(Canvas.Left), ElementName=imageBomb, NotifyOnTargetUpdated=True}" Canvas.Top="58" Canvas.Left="36" Opacity="0"/>
+        <Label x:Name="modeText" Content="Mode: Free Play" Canvas.Left="290" Canvas.Top="22" FontWeight="Bold" FontSize="20" FontFamily="Hobo Std"/>
+
+        <Label x:Name="scoreText" Content="Score: 0" Canvas.Left="10" Canvas.Top="22" FontFamily="Hobo Std" FontWeight="Bold" FontSize="20"/>
+        <Label x:Name="liveText" Content="Lives: 5" Canvas.Left="103" Canvas.Top="22" FontFamily="Hobo Std" FontWeight="Bold" FontSize="20" Visibility="Hidden"/>
+        <Label x:Name="timeText" Content="Time: 30" Canvas.Left="103" Canvas.Top="22" FontFamily="Hobo Std" FontWeight="Bold" FontSize="20" Visibility="Hidden"/>
+
+        <Rectangle x:Name="cover" Fill="Black" Height="488" Canvas.Left="-2" Stroke="Black" StrokeThickness="10" Canvas.Top="22" Width="716" Opacity="0.7"/>
+        <Button x:Name="bStart" Content="Start" VerticalAlignment="Top" Click="bStart_Click" Height="47" Canvas.Left="307" Canvas.Top="225" Width="105"/>
+        <Label x:Name="resultText" Content="LOSER" Canvas.Left="290" Canvas.Top="298" FontFamily="Hobo Std" FontWeight="Bold" FontSize="40" Visibility="Hidden"/>
+
+    </Canvas>
+</Window>
